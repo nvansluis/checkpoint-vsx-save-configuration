@@ -26,7 +26,7 @@ $FWDIR/conf/securid
 /var/ace/sdconf.rec
 /var/ace/sdopts.rec
 /var/ace/sdstatus.12
-/var/ace/securid)
+/var/ace/securid
 </pre>
 
 ### Usage
