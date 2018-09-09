@@ -4,6 +4,7 @@
 #
 # v0.1 - 2018-09-05
 # v0.2 - 2018-09-09
+# v0.3 - 2018-09-09
 
 TEMPDIR=/tmp/backup_configuration_vsx-$$
 DATE=`date +%Y-%m-%d`
@@ -58,6 +59,9 @@ function save_files() {
 # create temporary directory
 mkdir -p $TEMPDIR/$IDENTIFIER
 
+# remove lock
+clish -c 'lock database override' > /dev/null
+
 # get configuration per virtual system
 for vs in "${LISTVS[@]}"
 do
@@ -67,6 +71,11 @@ do
 
   # save config
   clish -f $TEMPDIR/clish-input.txt > $TEMPDIR/$IDENTIFIER/vs_$vs-config.txt
+  
+  retVal=$?
+  if [ $retVal -ne 0 ]; then
+      echo "Error: show configuration command returned an error."
+  fi
 
   # save important files
   save_files $vs
@@ -81,3 +90,4 @@ echo "Saved configs: $OUTPUTDIR/$FILENAME"
 
 # remove temporary directory
 rm -rf $TEMPDIR
+
