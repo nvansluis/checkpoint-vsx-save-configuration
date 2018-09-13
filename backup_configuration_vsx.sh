@@ -5,6 +5,7 @@
 # v0.1 - 2018-09-05
 # v0.2 - 2018-09-09
 # v0.3 - 2018-09-09
+# v0.4 - 2018-09-13
 
 TEMPDIR=/tmp/backup_configuration_vsx-$$
 DATE=`date +%Y-%m-%d`
@@ -16,10 +17,20 @@ OUTPUTDIR=/tmp
 . /etc/profile.d/CP.sh
 . /etc/profile.d/vsenv.sh
 
-# get configured virtual systems
-#LISTVS=(`clish -c 'show virtual-system all' | tail -n +3 | awk {'print $1'} | tr '\r\n' ' '`)
-LISTVS=(`vrf list vrfs | tr '\r\n' ' '`)
+# check if script is running with root privileges
+if [ ${EUID} -ne 0 ];then
+  echo "Please run as admin"
+  exit 1
+fi
 
+# check if this is a VSX member
+if [ ! -f $FWDIR/conf/vsname ]; then
+    echo "Error: this script can only run on a VSX member"    
+    exit 1
+fi
+
+# get configured virtual systems
+LISTVS=(`vrf list vrfs | tr '\r\n' ' '`)
 
 function save_files() {
     # change to context of virtual system
@@ -42,6 +53,7 @@ function save_files() {
            $FWDIR/conf/sdopts.rec
            $FWDIR/conf/sdstatus.12
            $FWDIR/conf/securid
+           $CPDIR/registry/HKLM_registry.data
            /var/ace/sdconf.rec
            /var/ace/sdopts.rec
            /var/ace/sdstatus.12
