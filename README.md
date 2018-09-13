@@ -23,6 +23,7 @@ $FWDIR/conf/sdconf.rec
 $FWDIR/conf/sdopts.rec
 $FWDIR/conf/sdstatus.12
 $FWDIR/conf/securid
+$CPDIR/registry/HKLM_registry.data
 /var/ace/sdconf.rec
 /var/ace/sdopts.rec
 /var/ace/sdstatus.12
@@ -32,6 +33,6 @@ $FWDIR/conf/securid
 ### Usage
 <pre>
 [Expert@fw1:0]# ./backup_configuration_vsx.sh
-Saved configs: /tmp/backup_configuration_vsx-fw1-2018-09-05.tar
+Saved configs: /tmp/backup_configuration_vsx-fw1-2018-09-05.tar.gz
 [Expert@fw1:0]#
 </pre>
