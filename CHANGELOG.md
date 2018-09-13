@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.4] - 2018-09-13
+## Added
+- Check that script is being run as root.
+- Check that script is being run on a VSX member.
+- Added registry file to the list of files to backup.
+
 ## [0.3] - 2018-09-09
 ### Added
 - Sometimes a lock on the clish prevents the script from running the 'show configuration' command. The script now overrides a possible lock on clish. The script will also returns an error message when the 'show configuration' command fails to execute.
@@ -17,6 +23,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Initial release
 
+[0.4]: https://github.com/nvansluis/checkpoint-vsx-save-configuration/tree/a6b942d1013aa6fd7ed640707c468a72f0d12cdb
 [0.3]: https://github.com/nvansluis/checkpoint-vsx-save-configuration/tree/bec4c7e2cf3149bd2ede83aa57dd9d86354a34a1
 [0.2]: https://github.com/nvansluis/checkpoint-vsx-save-configuration/tree/2b1067a7dfbe80dae3b7c702fda751ce397babcf
 [0.1]: https://github.com/nvansluis/checkpoint-vsx-save-configuration/tree/cfd23cb207794d3cf50ff9f906c97dfed66e3495
