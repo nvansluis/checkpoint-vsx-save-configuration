@@ -6,6 +6,7 @@
 # v0.2 - 2018-09-09
 # v0.3 - 2018-09-09
 # v0.4 - 2018-09-13
+# v0.5 - 2020-11-02
 
 TEMPDIR=/tmp/backup_configuration_vsx-$$
 DATE=`date +%Y-%m-%d`
@@ -30,7 +31,7 @@ if [ ! -f $FWDIR/conf/vsname ]; then
 fi
 
 # get configured virtual systems
-LISTVS=(`vrf list vrfs | tr '\r\n' ' '`)
+LISTVS=(`$FWDIR/bin/vslist | tr '\r\n' ' '`)
 
 function save_files() {
     # change to context of virtual system
